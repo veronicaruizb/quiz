@@ -7,11 +7,17 @@ body {
   padding: 50px;
   font: 16px Georgia, serif;
   color:white;
+  background:#333;
+  font-size: xx-large;
 }
 .page {
 	margin:2% auto;
 	color:white;
 }
+#page:after{content:"Smartphone Layout";}
+
+.no-narrow{display:none;}
+
 .main {
 	border:1px solid #999;
 	padding:1%;
@@ -36,5 +42,9 @@ section {
 }
 footer {
 	text-align: center;
+	font-size:large;
+}
+input{
+	font-size:large;
 }
 nav a {margin:0px 10px 0px 0px;}
