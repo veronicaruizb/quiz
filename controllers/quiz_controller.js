@@ -2,9 +2,17 @@ var models = require('../models');
 
 //GET /quizzes
 exports.index = function(req, res, next){
+	var search = req.query.search;
+	if(search){
+		search = search.replace(/\s/g, "%");
+		models.Quiz.findAll({where:["question like ?", '%'+search+'%'], order: 'question ASC'}).then(function(quiz){
+		res.render('quizzes/list.ejs', {quiz: quiz});
+		}).catch(function(error){next(error);});
+	} else {
 	models.Quiz.findAll().then(function(quizzes){
-		res.render('quizzes/index.ejs', {quizzes: quizzes});
+		res.render('quizzes/index.ejs', {quizzes: quizzes, search: search});
 	}).catch(function(error){next(error);});
+	}
 };
 
 //GET /quizzes/:id
