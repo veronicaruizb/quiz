@@ -52,7 +52,6 @@ exports.show = function(req, res, next){
 };
 
 //GET /quizzes/:id/check
-
 exports.check = function(req, res){
 	models.Quiz.findById(req.params.quizId).then(function(quiz){
 		if(quiz){
@@ -78,8 +77,10 @@ exports.create = function(req, res, next){
 								answer: req.body.quiz.answer});
 	//guarda en DB los campos pregunta y respuesta de quiz
 	quiz.save({fields: ["question", "answer"]}).then(function(quiz){
+		req.flash('sucess', 'Quiz creado con éxito.');
 		res.redirect('/quizzes');
 	}).catch(function(error){
+		req.flash('error', 'Error al crear un Quiz: '+error.message);
 		next(error);
 	});
 };

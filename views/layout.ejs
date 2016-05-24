@@ -20,6 +20,39 @@
       <a href="/author">Creditos</a>
     </nav>
 
+    <section id="f">
+      <% if(messages.info){ %>
+          <article if="flashinfo">
+            <h3>Información de interés: </h3>
+            <ul>
+              <% for(var i in messages.info){ %>
+              <li> <%= messages.info[i] %> </li>
+              <% } %>
+            </ul>
+          </article>
+      <% } %>
+      <% if(messages.sucess){ %>
+          <article if="flashsuccess">
+            <h3>Tareas completadas con éxito: </h3>
+            <ul>
+              <% for(var i in messages.sucess){ %>
+              <li> <%= messages.sucess[i] %> </li>
+              <% } %>
+            </ul>
+          </article>
+      <% } %>
+      <% if(messages.error){ %>
+          <article if="flasherror">
+            <h3>Errores encontrados: </h3>
+            <ul>
+              <% for(var i in messages.error){ %>
+              <li> <%= messages.error[i] %> </li>
+              <% } %>
+            </ul>
+          </article>
+      <% } %>
+    </section>
+
     <section class="main">
     <div><%- body%></div>
     </section>
