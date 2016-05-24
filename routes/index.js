@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
 var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
@@ -22,5 +21,10 @@ router.get('/quizzes/:quizId(\\d+).:format?', quizController.show);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 router.get('/quizzes/new', quizController.new);
 router.post('/quizzes', quizController.create);
+router.get('/quizzes/:quizId(\\d+)/edit', quizController.edit);
+router.put('/quizzes/:quizId(\\d+)', quizController.update);
+
+
+
 
 module.exports = router;
