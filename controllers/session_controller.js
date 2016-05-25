@@ -27,6 +27,8 @@ exports.create = function (req, res, next){
 
 	authenticate(login, password).then(function(user){
 		if(user){
+			var ta = new Date();
+			var tb = ta.getTime();
 			req.session.user = {id:user.id, username:user.username};
 			res.redirect(redir);
 		}else{
