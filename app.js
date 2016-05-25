@@ -30,6 +30,13 @@ app.use(session({secret: "Quiz 2016",
 app.use(method0verride('_method', {methods: ["POST", "GET"]}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
+
+//helper dinamico
+app.use(function(req, res, next){
+  res.locals.session=req.session;
+  next();
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
