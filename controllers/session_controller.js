@@ -46,3 +46,12 @@ exports.destroy = function(req, res, next){
 	delete req.session.user;
 	res.redirect("/session");
 };
+
+//Middleware: se requiere hacer login
+exports.loginRequired = function(req, res, next){
+	if(req.session.user){
+		next();
+	} else {
+		res.redirect('/session?redir=' + (req.param('redir')||req.url));
+	}
+};
