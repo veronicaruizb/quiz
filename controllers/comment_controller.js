@@ -22,10 +22,12 @@ exports.new = function(req, res, next){
 
 //POST /quizzes/:quizId/comments
 exports.create = function(req, res, next){
+	var authorId = req.session.user.username || "";
 	var comment = models.Comment.build(
 		{text: req.body.comment.text, 
-		 QuizId: req.quiz.id});
-	comment.save().then(function(comment){
+		 QuizId: req.quiz.id,
+		 AuthorId: authorId});
+	comment.save({fields: ["text", "QuizId", "AuthorId"]}).then(function(comment){
 		req.flash('sucess', 'Comentario creado con éxito.');
 		res.redirect('/quizzes/' +req.quiz.id);
 	}).catch(Sequelize.ValidationError, function(error){
